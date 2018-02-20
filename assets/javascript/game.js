@@ -13,7 +13,7 @@ $(document).ready(function () {
     var maceWindu = {
         name: "maceWindu",
         healthPoints: 100,
-        attackPoints: 25,
+        attackPoints: 12,
         countPoints: 6,
         isHero: false,
         isOpponent: false,
@@ -22,7 +22,7 @@ $(document).ready(function () {
     var darthVader = {
         name: "darthVader",
         healthPoints: 180,
-        attackPoints: 5,
+        attackPoints: 10,
         countPoints: 30,
         isHero: false,
         isOpponent: false,
@@ -162,7 +162,14 @@ $(document).ready(function () {
                 // change attack button to reset button to reload the page
                 $("#attack-button").hide();
                 $("#reset-button").show();
+                // delete the card
+                $("#user-character").empty();
             }
         }
     }); // ATTACK CLICKS END ==============================================================
+
+    // RESET CLICKS BEGIN ==============================================================
+    $("#reset-button").click(function () {
+        window.location.reload(true);
+    }); // RESET CLICKS END ==============================================================
 });
