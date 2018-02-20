@@ -4,3 +4,7 @@
     max-width: 20rem;
     display: inline-block;
 }
+
+#reset-button {
+    display: none;
+}

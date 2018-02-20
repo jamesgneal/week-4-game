@@ -50,6 +50,10 @@ $(document).ready(function () {
     var heroAttack = 0;
     var oppHealth = 0;
     var oppCounter = 0;
+    var opponentsRemaining = 3;
+
+    // hide the reset button
+    $("#reset-button").hide();
 
     // CARD CLICKS BEGIN ==============================================================
     $(".character").click(function () {
@@ -66,10 +70,12 @@ $(document).ready(function () {
                     heroAttack = characters[i].attackPoints;
                 }
             }
-            // Move your selection to the player's "Your Character" div, the others to the "Enemies" div
+            // Move your selection to the player's "Your Character" div and add the hero health class to the HP , the others to the "Enemies" div,
             for (i = 0; i < characters.length; i++) {
                 if (characters[i].isHero === true) {
                     $(characters[i].cardId).appendTo("#user-character");
+                    var healthClassMaker = "#" + characters[i].name + "Health";
+                    $(healthClassMaker).addClass("heroHealthDisplay");
 
                 }
                 if (characters[i].isHero !== true) {
@@ -97,11 +103,18 @@ $(document).ready(function () {
                     characters[i].isOpponent = true;
                     // ...move the card to the Opponent area...
                     $(characters[i].cardId).appendTo("#chosen-opponent");
+
+                    // add the health class to their HP display
+                    var healthClassMaker = "#" + characters[i].name + "Health";
+                    $(healthClassMaker).addClass("oppHealthDisplay");
+                    console.log(healthClassMaker);
                     // ...pass point values to oppHealth and oppCounter
                     oppHealth = characters[i].healthPoints;
                     oppCounter = characters[i].countPoints;
                     // ...change the phase of the game
                     inBattle = true;
+                    // ...clear the message area
+                    $("#attack-message").empty();
                 }
             }
         } // CHOOSE OPPONENT END ==============================================================
@@ -109,6 +122,47 @@ $(document).ready(function () {
 
     // ATTACK CLICKS BEGIN ==============================================================
     $("#attack-button").click(function () {
+        // make sure we're in the correct phase of the game
+        if (inBattle === true) {
+            // get hero's attack points
+            // display points in attack window
+            $("#attack-message").text("Your attack did " + heroAttack + " damage!");
+            // subtract them from opponent's health points
+            oppHealth = oppHealth - heroAttack;
+            $(".oppHealthDisplay").text(oppHealth);
+            // update hero's attack
+            heroAttack = 2 * heroAttack;
 
+            // if opponent's health points less than or equal to 0 after attack
+            if (oppHealth <= 0) {
+                // delete the card
+                $("#chosen-opponent").empty();
+                // set inBattle to false
+                inBattle = false;
+                // reduce available opponents
+                opponentsRemaining--;
+                // end game if no more opponents
+                if (opponentsRemaining === 0) {
+                    $("#attack-message").append(" You win! You have defeated all of your opponents");
+                } else {
+                    $("#attack-message").append(" You win! Choose another opponent");
+                }
+            }
+            // if opponent's health points more than 0 after attack
+            if (oppHealth > 0) {
+                // subtract opponent's counter points from opponents health points
+                heroHealth = heroHealth - oppCounter;
+                $("#attack-message").append(" Opponent countered with " + oppCounter + "!");
+                $(".heroHealthDisplay").text(heroHealth);
+            }
+            // if hero's health points less than zero after attack
+            if (heroHealth <= 0) {
+                // display that you lost
+                $("#attack-message").append(" You lose!");
+                // change attack button to reset button to reload the page
+                $("#attack-button").hide();
+                $("#reset-button").show();
+            }
+        }
     }); // ATTACK CLICKS END ==============================================================
 });
