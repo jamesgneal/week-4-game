@@ -50,7 +50,7 @@ $(document).ready(function () {
     var heroAttack = 0;
     var oppHealth = 0;
     var oppCounter = 0;
-    var opponentsRemaining = 3;
+    var opponentsRemaining = (characters.length - 1);
 
     // hide the reset button
     $("#reset-button").hide();
