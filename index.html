@@ -20,20 +20,20 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <h1>
-                    Star Wars RPG!
+                    1role37 p37la37yi37ng37 37game9
                 </h1>
             </div>
         </div>
-        <div class="row">
-            <div id="choose-character" class="col-sm-12 text-center">
-                <h2>Choose your character</h2>
+        <div class="row" class="pre-game">
+            <div id="choose-character" class="col-sm-12 text-center pre-game">
+                <h3>Choose your character card</h3>
             </div>
         </div>
-        <div class="row">
+        <div class="row spread">
             <div id="obiwan-card" class="character" value="obiWan">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/obi.jpg" alt="obi-wan">
-                    <div class="card-body">
+                    <div class="card-body" id="obiWanInfo">
                         <h4 class="card-title">Obi-Wan Kenobi</h4>
                         <p class="card-text">HP:
                             <span id="obiWanHealth">120</span>
@@ -44,7 +44,7 @@
             <div id="mace-card" class="character" value="maceWindu">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/mace.jpg" alt="mace windu">
-                    <div class="card-body">
+                    <div class="card-body" id="maceWinduInfo">
                         <h4 class="card-title">Mace Windu</h4>
                         <p class="card-text">HP:
                             <span id="maceWinduHealth">100</span>
@@ -55,7 +55,7 @@
             <div id="vader-card" class="character" value="darthVader">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/vader.jpg" alt="darth vader">
-                    <div class="card-body">
+                    <div class="card-body" id="darthVaderInfo">
                         <h4 class="card-title">Darth Vader</h4>
                         <p class="card-text">HP:
                             <span id="darthVaderHealth">180</span>
@@ -66,7 +66,7 @@
             <div id="boba-card" class="character" value="bobaFett">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/boba.jpg" alt="boba fett">
-                    <div class="card-body">
+                    <div class="card-body" id="bobaFettInfo">
                         <h4 class="card-title">Boba Fett</h4>
                         <p class="card-text">HP:
                             <span id="bobaFettHealth">150</span>
@@ -76,30 +76,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-5 text-right">
+            <div class="col-sm-5 text-right active-game">
                 <h2>Your Character</h2>
                 <div id="user-character">
                 </div>
             </div>
-            <div class="col-sm-2 text-center">
-                <h2>Vs.</h2>
-                <div id="attack-button" class="btn btn-danger">
+            <div class="col-sm-2 text-center active-game">
+                <!-- <h2>Vs.</h2> -->
+                <div id="attack-button" class="btn btn-lg btn-success">
                     ATTACK!
                 </div>
-                <div id="reset-button" class="btn btn-warning">
+                <div id="reset-button" class="btn btn-lg btn-warning">
                     RESET
                 </div>
                 <div id="attack-message">
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-5 active-game">
                 <h2>Opponent</h2>
                 <div id="chosen-opponent">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12 text-center active-game" id="enemies-bar">
                 <h2>Enemies Available to Attack</h2>
             </div>
         </div>

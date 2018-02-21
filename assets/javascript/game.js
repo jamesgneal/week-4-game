@@ -48,12 +48,15 @@ $(document).ready(function () {
     // Gameplay variables
     var heroHealth = 0;
     var heroAttack = 0;
+    var attackAdder = 0;
     var oppHealth = 0;
     var oppCounter = 0;
     var opponentsRemaining = (characters.length - 1);
 
-    // hide the reset button
+    // set the correct visibilities for the gameboard
     $("#reset-button").hide();
+    $(".active-game").hide();
+    $(".pre-game").show();
 
     // CARD CLICKS BEGIN ==============================================================
     $(".character").click(function () {
@@ -62,24 +65,40 @@ $(document).ready(function () {
         if (heroChosen === false) {
             // Get the value of the clicked character...
             var changeHero = $($this).attr("value");
-            // ...and find the corresponding object, change their isHero boolean, and pass point values to heroHealth and heroAttack
+            // ...and find the corresponding object, change their isHero boolean, and pass point values to heroHealth, heroAttack, and attackAdder
             for (i = 0; i < characters.length; i++) {
                 if (characters[i].name === changeHero) {
                     characters[i].isHero = true;
                     heroHealth = characters[i].healthPoints;
                     heroAttack = characters[i].attackPoints;
+                    attackAdder = characters[i].attackPoints;
                 }
             }
+            // Change the visibilities of the gameboard
+            $(".pre-game").hide();
+            $(".active-game").show();
+
             // Move your selection to the player's "Your Character" div and add the hero health class to the HP , the others to the "Enemies" div,
             for (i = 0; i < characters.length; i++) {
                 if (characters[i].isHero === true) {
                     $(characters[i].cardId).appendTo("#user-character");
+
+                    // add the hero class to the child title div
+                    var titleColorChanger = "#" + characters[i].name + "Info"
+                    $(titleColorChanger).addClass("hero");
+
+
+
                     var healthClassMaker = "#" + characters[i].name + "Health";
                     $(healthClassMaker).addClass("heroHealthDisplay");
 
                 }
                 if (characters[i].isHero !== true) {
                     $(characters[i].cardId).appendTo("#enemies");
+                    
+                    // add the enemies class to the child title divs
+                    var titleColorChanger = "#" + characters[i].name + "Info"
+                    $(titleColorChanger).addClass("enemies");
 
                     // Fix the stack from appendTo
                     $(characters[i].cardId).attr("style", "display: inline-block;");
@@ -103,6 +122,10 @@ $(document).ready(function () {
                     characters[i].isOpponent = true;
                     // ...move the card to the Opponent area...
                     $(characters[i].cardId).appendTo("#chosen-opponent");
+                    // add the opponent class and remove the enemies class to the child title divs
+                    var titleColorChanger = "#" + characters[i].name + "Info"
+                    $(titleColorChanger).addClass("opponent");
+                    $(titleColorChanger).removeClass("enemies");
 
                     // add the health class to their HP display
                     var healthClassMaker = "#" + characters[i].name + "Health";
@@ -131,7 +154,7 @@ $(document).ready(function () {
             oppHealth = oppHealth - heroAttack;
             $(".oppHealthDisplay").text(oppHealth);
             // update hero's attack
-            heroAttack = 2 * heroAttack;
+            heroAttack = heroAttack + attackAdder;
 
             // if opponent's health points less than or equal to 0 after attack
             if (oppHealth <= 0) {
@@ -144,6 +167,11 @@ $(document).ready(function () {
                 // end game if no more opponents
                 if (opponentsRemaining === 0) {
                     $("#attack-message").append(" You win! You have defeated all of your opponents");
+                    // change attack button to reset button to reload the page
+                    $("#attack-button").hide();
+                    $("#reset-button").show();
+                    // remove enemies card area
+                    $("#enemies-bar").hide();
                 } else {
                     $("#attack-message").append(" You win! Choose another opponent");
                 }
