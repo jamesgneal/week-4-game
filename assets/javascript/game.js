@@ -84,7 +84,7 @@ $(document).ready(function () {
                     $(characters[i].cardId).appendTo("#user-character");
 
                     // remove the redundant bootstrap class
-                    $(characters[i].cardId).removeClass("col-md-3");
+                    $(characters[i].cardId).removeClass("col-xs-3");
 
                     // add the hero class to the child title div
                     var titleColorChanger = "#" + characters[i].name + "Info"
@@ -126,7 +126,7 @@ $(document).ready(function () {
                     // ...move the card to the Opponent area...
                     $(characters[i].cardId).appendTo("#chosen-opponent");
                     // remove the redundant bootstrap class
-                    $(characters[i].cardId).removeClass("col-md-3");
+                    $(characters[i].cardId).removeClass("col-xs-3");
                     // add the opponent class and remove the enemies class to the child title divs
                     var titleColorChanger = "#" + characters[i].name + "Info"
                     $(titleColorChanger).addClass("opponent");
