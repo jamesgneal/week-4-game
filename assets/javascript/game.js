@@ -61,6 +61,7 @@ $(document).ready(function () {
     // CARD CLICKS BEGIN ==============================================================
     $(".character").click(function () {
         var $this = this;
+        $(".character").removeClass("col-md-3");
         // CHOOSE HERO BEGIN ============================================================================
         if (heroChosen === false) {
             // Get the value of the clicked character...
@@ -92,16 +93,20 @@ $(document).ready(function () {
                     var healthClassMaker = "#" + characters[i].name + "Health";
                     $(healthClassMaker).addClass("heroHealthDisplay");
 
+                    // ...change the message area
+                    $("#attack-message").html("<p>Select an enemy character card to battle</p>");
+
                 }
+                // select the unclicked cards
                 if (characters[i].isHero !== true) {
                     $(characters[i].cardId).appendTo("#enemies");
-                    
+
                     // add the enemies class to the child title divs
                     var titleColorChanger = "#" + characters[i].name + "Info"
                     $(titleColorChanger).addClass("enemies");
 
                     // Fix the stack from appendTo
-                    $(characters[i].cardId).attr("style", "display: inline-block;");
+                    // $(characters[i].cardId).attr("style", "display: inline-block;");
                 }
             }
 
@@ -136,8 +141,8 @@ $(document).ready(function () {
                     oppCounter = characters[i].countPoints;
                     // ...change the phase of the game
                     inBattle = true;
-                    // ...clear the message area
-                    $("#attack-message").empty();
+                    // ...change the message area
+                    $("#attack-message").html("<p>Press attack</p>");
                 }
             }
         } // CHOOSE OPPONENT END ==============================================================
@@ -149,7 +154,7 @@ $(document).ready(function () {
         if (inBattle === true) {
             // get hero's attack points
             // display points in attack window
-            $("#attack-message").text("Your attack did " + heroAttack + " damage!");
+            $("#attack-message").html("<p>Your attack did <span class=\"damage\">" + heroAttack + "</span> damage!</p>");
             // subtract them from opponent's health points
             oppHealth = oppHealth - heroAttack;
             $(".oppHealthDisplay").text(oppHealth);
@@ -173,14 +178,14 @@ $(document).ready(function () {
                     // remove enemies card area
                     $("#enemies-bar").hide();
                 } else {
-                    $("#attack-message").append(" You win! Choose another opponent");
+                    $("#attack-message").append(" You win! Choose another opponent.");
                 }
             }
             // if opponent's health points more than 0 after attack
             if (oppHealth > 0) {
                 // subtract opponent's counter points from opponents health points
                 heroHealth = heroHealth - oppCounter;
-                $("#attack-message").append(" Opponent countered with " + oppCounter + "!");
+                $("#attack-message").append("<p>Opponent countered with <span class=\"counter-damage\">" + oppCounter + "</span>!");
                 $(".heroHealthDisplay").text(heroHealth);
             }
             // if hero's health points less than zero after attack

@@ -24,13 +24,33 @@
                 </h1>
             </div>
         </div>
-        <div class="row" class="pre-game">
-            <div id="choose-character" class="col-sm-12 text-center pre-game">
-                <h3>Choose your character card</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-3 active-game text-center">
+                <h2>Your Character</h2>
+                <div id="user-character">
+                </div>
+            </div>
+            <div class="col-md-2 text-center active-game">
+                <div id="attack-button" class="btn btn-success">
+                    ATTACK!
+                </div>
+                <div id="reset-button" class="btn btn-warning">
+                    RESET
+                </div>
+            </div>
+            <div class="col-md-3 active-game text-center">
+                <h2>Opponent</h2>
+                <div id="chosen-opponent">
+                </div>
             </div>
         </div>
-        <div class="row spread">
-            <div id="obiwan-card" class="character" value="obiWan">
+        <div class="row justify-content-center">
+            <div class="col-sm-4 text-center" id="attack-message">
+                <p>Select a character card to be your hero!</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div id="obiwan-card" class="character col-md-3" value="obiWan">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/obi.jpg" alt="obi-wan">
                     <div class="card-body" id="obiWanInfo">
@@ -41,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div id="mace-card" class="character" value="maceWindu">
+            <div id="mace-card" class="character col-md-3" value="maceWindu">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/mace.jpg" alt="mace windu">
                     <div class="card-body" id="maceWinduInfo">
@@ -52,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div id="vader-card" class="character" value="darthVader">
+            <div id="vader-card" class="character col-md-3" value="darthVader">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/vader.jpg" alt="darth vader">
                     <div class="card-body" id="darthVaderInfo">
@@ -63,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div id="boba-card" class="character" value="bobaFett">
+            <div id="boba-card" class="character col-md-3" value="bobaFett">
                 <div class="card">
                     <img class="card-img-top" src="assets/images/boba.jpg" alt="boba fett">
                     <div class="card-body" id="bobaFettInfo">
@@ -75,37 +95,12 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-5 text-right active-game">
-                <h2>Your Character</h2>
-                <div id="user-character">
-                </div>
-            </div>
-            <div class="col-sm-2 text-center active-game">
-                <!-- <h2>Vs.</h2> -->
-                <div id="attack-button" class="btn btn-lg btn-success">
-                    ATTACK!
-                </div>
-                <div id="reset-button" class="btn btn-lg btn-warning">
-                    RESET
-                </div>
-                <div id="attack-message">
-                </div>
-            </div>
-            <div class="col-sm-5 active-game">
-                <h2>Opponent</h2>
-                <div id="chosen-opponent">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 text-center active-game" id="enemies-bar">
+        <div class="row justify-content-center">
+            <div class="active-game" id="enemies-bar">
                 <h2>Enemies Available to Attack</h2>
             </div>
         </div>
-        <div class="row">
-            <div id="enemies">
-            </div>
+        <div class="row justify-content-center" id="enemies">
         </div>
     </div>
 
