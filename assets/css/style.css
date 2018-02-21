@@ -94,12 +94,16 @@ p {
     margin: 20px 0;
 }
 
+#enemies {
+    margin: 0 0 30px;
+}
+
 /* Message area ============================================================== */
 
 #attack-message {
     color: #fff;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 8px 11px;
+    padding: 10px 0 12px;
     border-radius: 5px;
     margin: 15px 0 10px;
 }

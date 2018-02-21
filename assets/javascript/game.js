@@ -61,7 +61,6 @@ $(document).ready(function () {
     // CARD CLICKS BEGIN ==============================================================
     $(".character").click(function () {
         var $this = this;
-        $(".character").removeClass("col-md-3");
         // CHOOSE HERO BEGIN ============================================================================
         if (heroChosen === false) {
             // Get the value of the clicked character...
@@ -84,12 +83,14 @@ $(document).ready(function () {
                 if (characters[i].isHero === true) {
                     $(characters[i].cardId).appendTo("#user-character");
 
+                    // remove the redundant bootstrap class
+                    $(characters[i].cardId).removeClass("col-md-3");
+
                     // add the hero class to the child title div
                     var titleColorChanger = "#" + characters[i].name + "Info"
                     $(titleColorChanger).addClass("hero");
 
-
-
+                    // add hero health class to HP
                     var healthClassMaker = "#" + characters[i].name + "Health";
                     $(healthClassMaker).addClass("heroHealthDisplay");
 
@@ -104,9 +105,6 @@ $(document).ready(function () {
                     // add the enemies class to the child title divs
                     var titleColorChanger = "#" + characters[i].name + "Info"
                     $(titleColorChanger).addClass("enemies");
-
-                    // Fix the stack from appendTo
-                    // $(characters[i].cardId).attr("style", "display: inline-block;");
                 }
             }
 
@@ -127,6 +125,8 @@ $(document).ready(function () {
                     characters[i].isOpponent = true;
                     // ...move the card to the Opponent area...
                     $(characters[i].cardId).appendTo("#chosen-opponent");
+                    // remove the redundant bootstrap class
+                    $(characters[i].cardId).removeClass("col-md-3");
                     // add the opponent class and remove the enemies class to the child title divs
                     var titleColorChanger = "#" + characters[i].name + "Info"
                     $(titleColorChanger).addClass("opponent");
