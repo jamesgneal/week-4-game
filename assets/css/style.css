@@ -94,6 +94,7 @@ p {
     margin: 0 0 30px;
 }
 
+#user-character,
 #chosen-opponent {
     /* to keep board from changing size when no opponent selected in full size*/
     min-width: 280px;
