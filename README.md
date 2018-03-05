@@ -13,5 +13,5 @@ The opponent then **counterattacks**, and the hero's HP is reduced by the number
 1. HTML/CSS
 1. Bootstrap 4
 1. JavaScript
-1. jQuey
+1. jQuery
 1. Photoshop
